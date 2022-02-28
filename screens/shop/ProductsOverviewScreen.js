@@ -5,7 +5,7 @@ import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 
 import HeaderButton from '../../components/UI/HeaderButton';
 import ProductItem from '../../components/shop/ProductItem';
-import * as cartActions from '../../store/actions/car t';
+import * as cartActions from '../../store/actions/cart';
 import Colors from '../../constants/Colors';
 
 const ProductsOverviewScreen = props => {
