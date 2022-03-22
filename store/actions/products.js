@@ -6,9 +6,8 @@ export const UPDATE_PRODUCT = 'UPDATE_PRODUCT';
 export const SET_PRODUCTS = 'SET_PRODUCTS';
 
 export const fetchProducts = () => {
-  return async (dispatch, getState) => {
+  return async dispatch => {
     // any async code you want!
-    const userId = getState().auth.userId;
     try {
       const response = await fetch(
         'https://rn-complete-guide.firebaseio.com/products.json'
@@ -25,7 +24,7 @@ export const fetchProducts = () => {
         loadedProducts.push(
           new Product(
             key,
-            resData[key].ownerId,
+            'u1',
             resData[key].title,
             resData[key].imageUrl,
             resData[key].description,
@@ -34,11 +33,7 @@ export const fetchProducts = () => {
         );
       }
 
-      dispatch({
-        type: SET_PRODUCTS,
-        products: loadedProducts,
-        userProducts: loadedProducts.filter(prod => prod.ownerId === userId)
-      });
+      dispatch({ type: SET_PRODUCTS, products: loadedProducts });
     } catch (err) {
       // send to custom analytics server
       throw err;
@@ -47,10 +42,9 @@ export const fetchProducts = () => {
 };
 
 export const deleteProduct = productId => {
-  return async (dispatch, getState) => {
-    const token = getState().auth.token;
+  return async dispatch => {
     const response = await fetch(
-      `https://rn-complete-guide.firebaseio.com/products/${productId}.json?auth=${token}`,
+      `https://rn-complete-guide.firebaseio.com/products/${productId}.json`,
       {
         method: 'DELETE'
       }
@@ -64,12 +58,10 @@ export const deleteProduct = productId => {
 };
 
 export const createProduct = (title, description, imageUrl, price) => {
-  return async (dispatch, getState) => {
+  return async dispatch => {
     // any async code you want!
-    const token = getState().auth.token;
-    const userId = getState().auth.userId;
     const response = await fetch(
-      `https://rn-complete-guide.firebaseio.com/products.json?auth=${token}`,
+      'https://rn-complete-guide.firebaseio.com/products.json',
       {
         method: 'POST',
         headers: {
@@ -79,8 +71,7 @@ export const createProduct = (title, description, imageUrl, price) => {
           title,
           description,
           imageUrl,
-          price,
-          ownerId: userId
+          price
         })
       }
     );
@@ -94,18 +85,16 @@ export const createProduct = (title, description, imageUrl, price) => {
         title,
         description,
         imageUrl,
-        price,
-        ownerId: userId
+        price
       }
     });
   };
 };
 
 export const updateProduct = (id, title, description, imageUrl) => {
-  return async (dispatch, getState) => {
-    const token = getState().auth.token;
+  return async dispatch => {
     const response = await fetch(
-      `https://rn-complete-guide.firebaseio.com/products/${id}.json?auth=${token}`,
+      `https://rn-complete-guide.firebaseio.com/products/${id}.json`,
       {
         method: 'PATCH',
         headers: {
