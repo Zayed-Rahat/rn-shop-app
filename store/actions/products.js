@@ -11,7 +11,7 @@ export const fetchProducts = () => {
     const userId = getState().auth.userId;
     try {
       const response = await fetch(
-        'https://ng-prj-test.firebaseio.com/products.json'
+        'https://rn-shop-app-129-default-rtdb.firebaseio.com/products.json'
       );
 
       if (!response.ok) {
@@ -69,7 +69,7 @@ export const createProduct = (title, description, imageUrl, price) => {
     const token = getState().auth.token;
     const userId = getState().auth.userId;
     const response = await fetch(
-      `https://ng-prj-test.firebaseio.com/products.json?auth=${token}`,
+      `https://rn-shop-app-129-default-rtdb.firebaseio.com/products.json?auth=${token}`,
       {
         method: 'POST',
         headers: {
