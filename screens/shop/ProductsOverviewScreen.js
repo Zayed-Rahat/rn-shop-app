@@ -6,10 +6,11 @@ import {
   Button,
   Platform,
   ActivityIndicator,
-  StyleSheet
+  StyleSheet,
+  HeaderButtons, 
+  Item 
 } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
-import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 
 import HeaderButton from '../../components/UI/HeaderButton';
 import ProductItem from '../../components/shop/ProductItem';

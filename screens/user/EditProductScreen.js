@@ -6,9 +6,10 @@ import {
   Platform,
   Alert,
   KeyboardAvoidingView,
-  ActivityIndicator
+  ActivityIndicator,
+  HeaderButtons, Item 
 } from 'react-native';
-import { HeaderButtons, Item } from 'react-navigation-header-buttons';
+
 import { useSelector, useDispatch } from 'react-redux';
 
 import HeaderButton from '../../components/UI/HeaderButton';
