@@ -40,10 +40,10 @@ const App=()=> {
       />
     );
   }
-/*   return (
+  return (
     <Provider store={store}>
       <AppNavigator />
     </Provider>
-  ); */
+  );
 }
 export default App;
